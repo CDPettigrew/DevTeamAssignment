@@ -146,7 +146,7 @@ namespace DevTeams_Challenge_Console
             bool newdeveloper = _teamRepo.AddDeveloperToDirectory(developer);
             if (newdeveloper == true)
             {
-                Console.WriteLine("Developer Added");
+                Console.WriteLine($"Developer {developer.DeveloperID} Added");
             }
             else
             {
@@ -157,6 +157,7 @@ namespace DevTeams_Challenge_Console
         private void CreateDevTeam()
         {
             Console.Clear();
+            HDisplayTeams();
             DevTeam devTeam = new DevTeam();
             Console.Write("Team Name: ");
             devTeam.TeamName = Console.ReadLine();
@@ -165,7 +166,7 @@ namespace DevTeams_Challenge_Console
             bool newTeam = _teamRepo.AddDevTeamToDirectory(devTeam);
             if (newTeam == true)
             {
-                Console.WriteLine("Team Added");
+                Console.WriteLine($"Team {devTeam.TeamID} Added");
             }
             else
             {
@@ -188,7 +189,7 @@ namespace DevTeams_Challenge_Console
                 _teamRepo.AddDeveloperToTeamById(int.Parse(id), teamId);
                 if (_teamRepo.AddDeveloperToTeamById(int.Parse(id), teamId))
                 {
-                    Console.WriteLine("Developer(s) added to team!");
+                    Console.WriteLine($"Developer(s) {id} added to team {teamId}!");
                 }
                 else
                 {
@@ -212,7 +213,7 @@ namespace DevTeams_Challenge_Console
                 _teamRepo.RemoveDeveloperFromTeamById(int.Parse(id), teamId);
                 if (_teamRepo.RemoveDeveloperFromTeamById(int.Parse(id), teamId))
                 {
-                    Console.WriteLine("Developer has been take off of the selected team!");
+                    Console.WriteLine($"Developer {id} has been take off of team {teamId}!");
                 }
                 else
                 {
@@ -353,11 +354,14 @@ namespace DevTeams_Challenge_Console
             bool confirmDevDel = _teamRepo.DeleteExistingDevelopers(deleteDev);
             if (confirmDevDel == true)
             {
-                Console.WriteLine($"Cofirmation, Developer {confirmDevDel} was Removed.\n");
+                Console.WriteLine($"Cofirmation, Developer {removeDevId} was Removed.\n");
 
             }
             else
+            {
                 Console.WriteLine("Uh oh something went wrong");
+            }
+            AnyKey();
         }
         private void DeleteExistingTeam()
         {
@@ -370,7 +374,7 @@ namespace DevTeams_Challenge_Console
             bool confirmDevTeamDel = _teamRepo.DeleteExistingDevTeam(deleteDevTeam);
             if (confirmDevTeamDel == true)
             {
-                Console.WriteLine("You have successfully deleted the evelopment Team you selected!");
+                Console.WriteLine($"You have successfully deleted Team {removeDevTeamId}!");
             }
             else
             {
