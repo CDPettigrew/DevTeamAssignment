@@ -32,7 +32,7 @@ namespace DevTeams_Challenge_Console
                         "3. Remove Developer From a Team By Id\n" +
                         "4. Display All Developers\n" +
                         "5. Developers that need Plural Access\n" +
-                        "6. Upate Existing Developer\n" +
+                        "6. Update Existing Developer\n" +
                         "7. Delete Existing Developer\n" +
                         "8. Developer Team Menu\n" +
                         "9. Exit\n");
@@ -209,7 +209,6 @@ namespace DevTeams_Challenge_Console
             int teamId = int.Parse(Console.ReadLine());
             foreach (var id in devIdSplit)
             {
-                //_teamRepo.RemoveDeveloperFromTeamById(int.Parse(id), teamId);
                 if (_teamRepo.RemoveDeveloperFromTeamById(int.Parse(id), teamId))
                 {
                     Console.WriteLine($"Developer {id} has been take off of team {teamId}!");
@@ -281,28 +280,32 @@ namespace DevTeams_Challenge_Console
         private void UpdateExistingDeveloper()
         {
             Console.Clear();
-            Developer newDev = new Developer();
+            Developer newInfo = new Developer();
             HDisplayDevelopers();
             Console.Write("Enter the Id Number of Developer for Updating: ");
             int devId = int.Parse(Console.ReadLine());
             Developer oldDev = _teamRepo.GetDevByID(devId);
+           
             Console.Write("Enter the Developer's New ID: ");
-            newDev.DeveloperID = Convert.ToInt32(Console.ReadLine());
+            newInfo.DeveloperID = Convert.ToInt32(Console.ReadLine());
+           
             Console.Write("Enter the Developer's New First Name: ");
-            newDev.FirstName = Console.ReadLine();
+            newInfo.FirstName = Console.ReadLine();
+            
             Console.Write("Enter the Developer's New Last Name: ");
-            newDev.LastName = Console.ReadLine();
-            Console.Write("Enter (Yes/No) if the Developer *Posseses a Pluralsight License: ");
+            newInfo.LastName = Console.ReadLine();
+            
+            Console.Write("Enter (Yes/No) if the Developer has a Pluralsight License: ");
             string newLic = Console.ReadLine().ToLower();
-            if (newLic == "yes")
+            if (newLic == "yes" || newLic == "true" || newLic == "y")
             {
-                newDev.PluralSightAccess = true;
+                newInfo.PluralSightAccess = true;
             }
             else
             {
-                newDev.PluralSightAccess = false;
+                newInfo.PluralSightAccess = false;
             }
-            if (_teamRepo.UpdateExistingDevelopers(oldDev, newDev))
+            if (_teamRepo.UpdateExistingDevelopers(oldDev, newInfo))
             {
                 Console.WriteLine("The developers information was updated!");
             }
@@ -316,18 +319,18 @@ namespace DevTeams_Challenge_Console
         {
             Console.Clear();
             HDisplayTeams();
-            Console.WriteLine("Enter the ID of the Team you would like to update: ");
+            Console.Write("Enter the ID of the Team you would like to update: ");
             DevTeam oldDevTeam = _teamRepo.GetDevTeamById(int.Parse(Console.ReadLine()));
             if (oldDevTeam != null)
             {
                 Console.Clear();
-                Console.WriteLine("Enter the new Team Id: ");
+                Console.Write("Enter the new Team Id: ");
                 string newTeamId = Console.ReadLine();
                 if (newTeamId != "")
                 {
                     oldDevTeam.TeamID = int.Parse(newTeamId);
                 }
-                Console.WriteLine("Enter new team Name: ");
+                Console.Write("Enter new team Name: ");
                 string newTeamName = Console.ReadLine();
                 if (newTeamName != "")
                 {

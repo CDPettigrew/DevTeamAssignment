@@ -65,6 +65,7 @@ namespace DevTeams_Challenge_Repository
                 oldDev.LastName = newDev.LastName;
                 oldDev.DeveloperID = newDev.DeveloperID;
                 oldDev.AssignedTeam = newDev.AssignedTeam;
+                oldDev.PluralSightAccess = newDev.PluralSightAccess;
 
                 return true;
             }
