@@ -186,7 +186,6 @@ namespace DevTeams_Challenge_Console
             int teamId = int.Parse(Console.ReadLine());
             foreach (var id in devIdSplit)
             {
-                _teamRepo.AddDeveloperToTeamById(int.Parse(id), teamId);
                 if (_teamRepo.AddDeveloperToTeamById(int.Parse(id), teamId))
                 {
                     Console.WriteLine($"Developer(s) {id} added to team {teamId}!");
@@ -210,7 +209,7 @@ namespace DevTeams_Challenge_Console
             int teamId = int.Parse(Console.ReadLine());
             foreach (var id in devIdSplit)
             {
-                _teamRepo.RemoveDeveloperFromTeamById(int.Parse(id), teamId);
+                //_teamRepo.RemoveDeveloperFromTeamById(int.Parse(id), teamId);
                 if (_teamRepo.RemoveDeveloperFromTeamById(int.Parse(id), teamId))
                 {
                     Console.WriteLine($"Developer {id} has been take off of team {teamId}!");
